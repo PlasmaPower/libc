@@ -229,7 +229,6 @@ cfg_if! {
                         target_os = "bitrig"))] {
         #[link(name = "c")]
         #[link(name = "m")]
-        #[link(name = "resolv")]
         extern {}
     } else if #[cfg(target_os = "haiku")] {
         #[link(name = "root")]
@@ -243,7 +242,6 @@ cfg_if! {
         #[link(name = "c")]
         #[link(name = "m")]
         #[link(name = "rt")]
-        #[link(name = "resolv")]
         #[link(name = "pthread")]
         extern {}
     }
@@ -696,6 +694,7 @@ extern {
                        res: *mut *mut addrinfo) -> ::c_int;
     pub fn freeaddrinfo(res: *mut addrinfo);
     pub fn gai_strerror(errcode: ::c_int) -> *const ::c_char;
+    #[link_name = "__res_init"]
     pub fn res_init() -> ::c_int;
 
     #[cfg_attr(target_os = "netbsd", link_name = "__gmtime_r50")]
