@@ -694,6 +694,14 @@ extern {
                        res: *mut *mut addrinfo) -> ::c_int;
     pub fn freeaddrinfo(res: *mut addrinfo);
     pub fn gai_strerror(errcode: ::c_int) -> *const ::c_char;
+    #[cfg_attr(all(unix,
+                   not(target_os = "macos"),
+                   not(target_os = "solaris"),
+                   not(target_env = "musl")
+                   ),
+               link_name = "__res_init")]
+    #[cfg_attr(target_os = "macos", link_name = "res_9_init")]
+    pub fn res_init() -> ::c_int;
 
     #[cfg_attr(target_os = "netbsd", link_name = "__gmtime_r50")]
     pub fn gmtime_r(time_p: *const time_t, result: *mut tm) -> *mut tm;
