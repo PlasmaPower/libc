@@ -229,6 +229,7 @@ cfg_if! {
                         target_os = "bitrig"))] {
         #[link(name = "c")]
         #[link(name = "m")]
+        #[link(name = "resolv")]
         extern {}
     } else if #[cfg(target_os = "haiku")] {
         #[link(name = "root")]
@@ -242,6 +243,7 @@ cfg_if! {
         #[link(name = "c")]
         #[link(name = "m")]
         #[link(name = "rt")]
+        #[link(name = "resolv")]
         #[link(name = "pthread")]
         extern {}
     }
