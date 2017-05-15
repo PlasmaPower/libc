@@ -1016,3 +1016,5 @@ cfg_if! {
         pub use self::other::*;
     }
 }
+
+pub const ENOATTR: ::c_int = ::ENODATA;

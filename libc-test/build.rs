@@ -171,6 +171,7 @@ fn main() {
         if !uclibc {
             // optionally included in uclibc
             cfg.header("sys/xattr.h");
+            cfg.header("attr/xattr.h");
         }
         cfg.header("sys/ipc.h");
         cfg.header("sys/msg.h");
